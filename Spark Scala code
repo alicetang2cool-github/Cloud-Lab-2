@@ -4,7 +4,7 @@
 spark-shell
 
 
-val text = sc.textFile("desktop/file.txt") 
+val text = sc.textFile("desktop/Pride and Prejudice by Jane Austen.txt")
 text.collect()
 
 val inputWords = text.flatMap(x => x.split(" "))
