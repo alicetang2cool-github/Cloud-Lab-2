@@ -1,0 +1,19 @@
+# This is scala code for word count on a file.txt
+
+
+spark-shell
+
+
+val text = sc.textFile("desktop/file.txt") 
+text.collect()
+
+val inputWords = text.flatMap(x => x.split(" "))
+inputWords.take(10)
+
+val inputPairs = inputWords.map(x => (x,1))
+inputPairs.take(10)
+
+val inputWordCount = inputPairs.reduceByKey( (x,y) => x+y)
+inputWordCount.take(10)
+
+inputWordCount.saveAsTextFile("desktop/newfile.txt")
