@@ -55,7 +55,7 @@ writing_file.close()
 
 
 
-#python file for taking files and inserting into database
+#python code for taking files and inserting into database
 import mysql.connector, sys
 
 mydb = mysql.connector.connect(
@@ -76,3 +76,12 @@ for line in sys.stdin:
 	sql = "INSERT INTO mytable VALUES ('{}', '{}')".format(word, count)	
 	mycursor.execute(sql)
 	mydb.commit()
+	
+	
+
+
+#terminal actions to perform insertion using python code and files
+cat /Users/AliceTang/Desktop/NewCount1.txt | python /Users/AliceTang/Desktop/insertion.py
+cat /Users/AliceTang/Desktop/NewCount2.txt | python /Users/AliceTang/Desktop/insertion.py
+
+
