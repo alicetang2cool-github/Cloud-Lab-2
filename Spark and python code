@@ -20,7 +20,7 @@ textLowerFlatMapMR.saveAsTextFile("desktop/newfile.txt")
 
 
 
-#python code for taking both files and editing it to fit insertion 
+#python code for taking both files and editing it to fit insertion...(named Lab#2.ipynb)
 #file 1
 file = open("part-00000.txt", "r")
 new_file1_content = ""
@@ -55,7 +55,7 @@ writing_file.close()
 
 
 
-#python code for taking files and inserting into database
+#python code for taking files and inserting into database...(named insertion_code.py)
 import mysql.connector, sys
 
 mydb = mysql.connector.connect(
