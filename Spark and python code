@@ -1,0 +1,78 @@
+# This is scala code for word count on a file.txt
+spark-shell
+
+
+val text = sc.textFile("desktop/Pride and Prejudice by Jane Austen.txt")
+text.collect()
+
+val textLower = text.map(_.toLowerCase)
+textLower.take(10)
+
+val textLowerFlatMap = textLower.flatMap("[a-z]+".r findAllIn _)
+textLowerFlatMap.take(10)
+
+val textLowerFlatMapMR = textLowerFlatMap.map(word => (word,1)).reduceByKey(_ + _)
+textLowerFlatMapMR.take(10)
+
+textLowerFlatMapMR.saveAsTextFile("desktop/newfile.txt")
+
+
+
+
+
+#python code for taking both files and editing it to fit insertion 
+#file 1
+file = open("part-00000.txt", "r")
+new_file1_content = ""
+for aline in file:
+    a = aline[1::].strip()
+    b = a[0:-1]
+    line = b.replace(",", " ")
+    new_file1_content += line +"\n"
+new_file1_content = new_file1_content[0:-2]
+file.close()
+    
+writing_file = open("NewCount1.txt", "w+")
+writing_file.write(new_file1_content)
+writing_file.close()
+
+#file 2
+file = open("part-00001.txt", "r")
+new_file2_content = ""
+for aline in file:
+    a = aline[1::].strip()
+    b = a[0:-1]
+    line = b.replace(",", " ")
+    new_file2_content += line +"\n"
+new_file2_content = new_file2_content[0:-2]
+file.close()
+    
+writing_file = open("NewCount2.txt", "w+")
+writing_file.write(new_file2_content)
+writing_file.close()
+
+
+
+
+
+#python file for taking files and inserting into database
+import mysql.connector, sys
+
+mydb = mysql.connector.connect(
+  host="alice2.caefrtf90g81.us-west-2.rds.amazonaws.com",
+  user="admin",
+  password="popuandgo",
+  database="mydatabase")
+
+for line in sys.stdin:
+	line = line.strip()
+	word, count = line.split()
+	try :
+		count = int(count)
+	except ValueError:
+		continue
+	print(word)
+	mycursor = mydb.cursor(dictionary = True)
+	sql = "INSERT INTO mytable VALUES ('{}', '{}')".format(word, count)	
+	mycursor.execute(sql)
+	mydb.commit()
