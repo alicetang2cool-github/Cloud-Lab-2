@@ -80,7 +80,7 @@ for line in sys.stdin:
 	
 
 
-#terminal actions to perform insertion using python code and files
+#terminal commands to perform insertion using python code and files
 cat /Users/AliceTang/Desktop/NewCount1.txt | python /Users/AliceTang/Desktop/insertion.py
 cat /Users/AliceTang/Desktop/NewCount2.txt | python /Users/AliceTang/Desktop/insertion.py
 
