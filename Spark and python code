@@ -1,4 +1,4 @@
-# This is scala code for word count on a file.txt
+# This is scala code for word count on a test file, which is Pride and Prejudice by Jane Austen
 spark-shell
 
 
@@ -60,8 +60,8 @@ import mysql.connector, sys
 
 mydb = mysql.connector.connect(
   host="alice2.caefrtf90g81.us-west-2.rds.amazonaws.com",
-  user="admin",
-  password="popuandgo",
+  user= username,
+  password= password,
   database="mydatabase")
 
 for line in sys.stdin:
